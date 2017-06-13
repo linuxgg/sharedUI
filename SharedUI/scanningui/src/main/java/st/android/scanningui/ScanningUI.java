@@ -453,7 +453,6 @@ public class ScanningUI extends RelativeLayout {
                     scanningUI.scanningBlurScoreBarDecrease();
                     break;
                 case UPLOADING_PROGRESS_START:
-                    Log.d("progressbar", "hereree!!!");
                     try {
                         postDelayed(new Runnable() {
                             @Override
