@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+    <View
+        android:id="@+id/overlayT"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentTop="true"
+        android:background="@color/black_overlay" />
+
+    <View
+        android:id="@+id/overlayB"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_alignParentBottom="true"
+        android:background="@color/black_overlay" />
+
+    <View
+        android:id="@+id/overlayR"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/overlayB"
+        android:layout_alignParentRight="true"
+        android:layout_below="@id/overlayT"
+        android:background="@color/black_overlay" />
+
+    <View
+        android:id="@+id/overlayL"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/overlayB"
+        android:layout_alignParentLeft="true"
+        android:layout_below="@id/overlayT"
+        android:background="@color/black_overlay" />
+
+
+    <!-- 4 corners-->
+    <ImageView
+        android:id="@+id/corner_left_top"
+        style="@style/CornerSettings" />
+
+    <ImageView
+        android:id="@+id/corner_left_bottom"
+        style="@style/CornerSettings"
+        android:rotation="270" />
+
+    <ImageView
+        android:id="@+id/corner_right_top"
+        style="@style/CornerSettings"
+        android:rotation="90" />
+
+    <ImageView
+        android:id="@+id/corner_right_bottom"
+        style="@style/CornerSettings"
+        android:rotation="180" />
+
+
+    <RelativeLayout
+        android:id="@+id/scanning_blur_score_progress_container"
+        android:layout_width="300dp"
+        android:layout_height="80dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="50dp"
+        android:gravity="center_vertical">
+
+        <ProgressBar
+            android:id="@+id/scanning_seekbar"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="15dp"
+            android:layout_centerVertical="true"
+            android:max="100"
+            android:progressDrawable="@drawable/scanning_progress_bar" />
+
+        <ImageView
+            android:id="@+id/scanning_progressbar_thumb"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:background="@drawable/scanning_thumb" />
+    </RelativeLayout>
+
+
+    <TextView
+        android:id="@+id/scanning_status_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="300dp"
+        android:background="@drawable/circle_background"
+        android:padding="10dp"
+        android:textColor="@color/white_color"
+        android:textSize="15sp"
+        android:visibility="gone" />
+
+    <RelativeLayout
+        android:id="@+id/scaning_result_img_and_loading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/scanning_result_img"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <!-- <com.agfa.android.arziroqrplus.ui.views.BorderProgressBar
+             android:id="@+id/id_round_progressbar"
+             style="@style/ScanUploading"
+             android:layout_width="match_parent"
+             android:layout_height="match_parent"
+             round:isTextDisplay="true"
+             round:radius="60dp"
+             round:ringWidth="8dp"
+             round:startAngle="-90"
+             round:text="@string/string_uploading"
+             round:textColor="@color/white_color"
+             round:textSize="14sp" />-->
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:background="@drawable/circle_background"
+            android:orientation="vertical"
+            android:padding="5dp">
+
+            <TextView
+                android:id="@+id/scanning_result_uploading_text"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:padding="10dp"
+                android:text="Analyzing"
+                android:textColor="@color/white_color"
+                android:textSize="12sp" />
+
+            <ProgressBar
+                android:id="@+id/scanning_result_uploading_bar"
+                style="?android:attr/progressBarStyleHorizontal"
+                android:layout_width="100dp"
+                android:layout_height="6dp"
+                android:layout_gravity="center"
+                android:layout_marginBottom="10dp"
+                android:layout_marginEnd="15dp"
+                android:layout_marginStart="15dp"
+                android:max="100"
+                android:progressDrawable="@drawable/scanning_progress_bar" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

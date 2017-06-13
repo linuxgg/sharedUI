@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="CornerSettings">
+        <item name="android:tint">@color/c1f5fac</item>
+        <item name="android:layout_width">@dimen/scanning_corner_img_size</item>
+        <item name="android:layout_height">@dimen/scanning_corner_img_size</item>
+        <item name="android:src">@drawable/corner</item>
+    </style>
+
+</resources>
