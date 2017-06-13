@@ -2,13 +2,7 @@
 <resources>
     <color name="black_overlay">#55000000</color>
     <color name="c1f5fac">#1f5fac</color>
-    <color name="normal_dark_groundColor">#1f5fac</color>
-    <color name="normal_light_groundColor">#0095f2</color>
     <color name="white_color">#FFFFFF</color>
     <color name="c0095f2">#0095f2</color>
     <color name="c2095f2">#2095f2</color>
-    <color name="md_material_blue_600">#1E88E5</color>
-    <color name="md_material_blue_800">#1565C0</color>
-
-
 </resources>
