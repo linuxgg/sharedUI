@@ -7,5 +7,9 @@
         <item name="android:layout_height">@dimen/scanning_corner_img_size</item>
         <item name="android:src">@drawable/corner</item>
     </style>
-
+    <style name="ScanUploading">
+        <item name="centerColor">@color/md_material_blue_800</item>
+        <item name="progressColor">@color/md_material_blue_600</item>
+        <item name="ringColor">@color/white_color</item>
+    </style>
 </resources>
