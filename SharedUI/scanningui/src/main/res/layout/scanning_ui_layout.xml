@@ -107,19 +107,6 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
 
-        <!-- <com.agfa.android.arziroqrplus.ui.views.BorderProgressBar
-             android:id="@+id/id_round_progressbar"
-             style="@style/ScanUploading"
-             android:layout_width="match_parent"
-             android:layout_height="match_parent"
-             round:isTextDisplay="true"
-             round:radius="60dp"
-             round:ringWidth="8dp"
-             round:startAngle="-90"
-             round:text="@string/string_uploading"
-             round:textColor="@color/white_color"
-             round:textSize="14sp" />-->
-
 
         <LinearLayout
             android:layout_width="wrap_content"
