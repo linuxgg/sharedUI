@@ -81,13 +81,10 @@ public class ScanningUI extends RelativeLayout {
     private LinearLayout scanningResultUploadingContainer;
 
 
-    int blurScoreProgressbarProcessColor;
-    int thumbBackgroundColor;
-    int jumpMsgBackgroundColor;
-    int uploadingContainerBackgroundColor;
-    int uploadingProgressBarProcessColor;
     int progressBarProcessDrawable;
     int mainColor;
+    int jumpMsgBackground;
+    int thumbSrc;
 
     ImageView conerLeftTop;
     ImageView conerLeftBottom;
@@ -122,21 +119,11 @@ public class ScanningUI extends RelativeLayout {
     private void getAttrSettings(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.scanningUI);
 
-        blurScoreProgressbarProcessColor = ta.getResourceId(R.styleable.scanningUI_blurScoreProgressBarProcessColor, -1);
-        thumbBackgroundColor = ta.getResourceId(R.styleable.scanningUI_thumbBackgroundColor, -1);
-        jumpMsgBackgroundColor = ta.getResourceId(R.styleable.scanningUI_jumpMsgBackgroundColor, -1);
-        uploadingContainerBackgroundColor = ta.getResourceId(R.styleable.scanningUI_uploadingContainerBackgroundColor, -1);
-        uploadingProgressBarProcessColor = ta.getResourceId(R.styleable.scanningUI_uploadingProgressBarProcessColor, -1);
         progressBarProcessDrawable = ta.getResourceId(R.styleable.scanningUI_android_progressDrawable, -1);
         mainColor = ta.getResourceId(R.styleable.scanningUI_mainColor, -1);
+        jumpMsgBackground = ta.getResourceId(R.styleable.scanningUI_jumpMsgBackground, -1);
+        thumbSrc = ta.getResourceId(R.styleable.scanningUI_thumbSrc, -1);
 
-        Log.e(TAG, "blurScoreProgressbarProcessColor = " + blurScoreProgressbarProcessColor);
-        Log.e(TAG, "thumbBackgroundColor = " + thumbBackgroundColor);
-        Log.e(TAG, "jumpMsgBackgroundColor = " + jumpMsgBackgroundColor);
-        Log.e(TAG, "uploadingContainerBackgroundColor = " + uploadingContainerBackgroundColor);
-        Log.e(TAG, "uploadingProgressBarProcessColor = " + uploadingProgressBarProcessColor);
-        Log.e(TAG, "progressBarProcessDrawable = " + progressBarProcessDrawable);
-        Log.e(TAG, "mainColor = " + mainColor);
 
         ta.recycle();
     }
@@ -152,7 +139,13 @@ public class ScanningUI extends RelativeLayout {
             resultImgAndLoadingLayout = (RelativeLayout) findViewById(R.id.scanning_result_img_and_loading);
             scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
             scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
+            if (thumbSrc != -1) {
+                scanningThumb.setBackgroundResource(thumbSrc);
+            }
             jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
+            if (jumpMsgBackground != -1) {
+                jumpMsg.setBackgroundResource(jumpMsgBackground);
+            }
 
             conerLeftTop = (ImageView) findViewById(R.id.corner_left_top);
             conerLeftBottom = (ImageView) findViewById(R.id.corner_left_bottom);
@@ -161,14 +154,12 @@ public class ScanningUI extends RelativeLayout {
 
             if (mainColor != -1) {
 
-                setDrawableTint(scanningThumb);
                 setDrawableTint(conerLeftBottom);
                 setDrawableTint(conerLeftTop);
                 setDrawableTint(conerRightTop);
                 setDrawableTint(conerRightBottom);
                 jumpMsg.setBackgroundColor(mainColor);
 
-                scanningResultUploadingContainer.setBackgroundColor(context.getResources().getColor(mainColor));
             }
         } catch (Exception e) {
             e.printStackTrace();

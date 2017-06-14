@@ -1,12 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <declare-styleable name="scanningUI">
-        <attr name="blurScoreProgressBarProcessColor" format="color" />
         <attr name="mainColor" format="color" />
-        <attr name="thumbBackgroundColor" format="color" />
-        <attr name="jumpMsgBackgroundColor" format="color" />
-        <attr name="uploadingContainerBackgroundColor" format="color" />
-        <attr name="uploadingProgressBarProcessColor" format="color" />
         <attr name="android:progressDrawable" />
+        <attr name="jumpMsgBackground" format="reference" />
+        <attr name="thumbSrc" format="reference" />
     </declare-styleable>
 </resources>
