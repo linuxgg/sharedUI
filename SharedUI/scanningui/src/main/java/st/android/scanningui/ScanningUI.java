@@ -146,15 +146,20 @@ public class ScanningUI extends RelativeLayout {
             scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
             jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
             if (mainColor != -1) {
-                scanningBlurScoreProgressBarContainer.setBackgroundColor(mainColor);
+                scanningBlurScoreProgressBarContainer.setBackgroundColor(context.getResources().getColor(mainColor));
 
                 Drawable drawable = DrawableCompat.wrap(scanningThumb.getDrawable());
-                DrawableCompat.setTint(drawable, mainColor);
-                scanningThumb.setImageDrawable(drawable);
-                findViewById(R.id.corner_left_top).setBackgroundColor(mainColor);
-                findViewById(R.id.corner_left_bottom).setBackgroundColor(mainColor);
-                findViewById(R.id.corner_right_top).setBackgroundColor(mainColor);
-                findViewById(R.id.corner_right_bottom).setBackgroundColor(mainColor);
+                if (drawable != null) {
+                    DrawableCompat.setTint(drawable, context.getResources().getColor(mainColor));
+                    scanningThumb.setImageDrawable(drawable);
+                } else {
+                    Log.e(TAG, "scanningThumb.getDrawable() is null");
+                }
+
+                findViewById(R.id.corner_left_top).setBackgroundColor(context.getResources().getColor(mainColor));
+                findViewById(R.id.corner_left_bottom).setBackgroundColor(context.getResources().getColor(mainColor));
+                findViewById(R.id.corner_right_top).setBackgroundColor(context.getResources().getColor(mainColor));
+                findViewById(R.id.corner_right_bottom).setBackgroundColor(context.getResources().getColor(mainColor));
             }
         } catch (Exception e) {
             e.printStackTrace();
