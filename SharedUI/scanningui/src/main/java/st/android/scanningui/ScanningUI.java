@@ -74,6 +74,14 @@ public class ScanningUI extends RelativeLayout {
      */
     private RelativeLayout scanningBlurScoreProgressBarContainer;
 
+
+    int blurScoreProgressbarProcessColor;
+    int thumbBackgroundColor;
+    int jumpMsgBackgroundColor;
+    int uploadingContainerBackgroundColor;
+    int uploadingProgressBarProcessColor;
+    int progressBarProcessDrawable;
+
     public ScanningUI(Context context, AttributeSet attrs) {
         super(context, attrs);
         this.context = context;
@@ -102,17 +110,19 @@ public class ScanningUI extends RelativeLayout {
     private void getAttrSettings(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.scanningUI);
 
-        int blurScoreProgressbarProcessColor = ta.getResourceId(R.styleable.scanningUI_blurScoreProgressBarProcessColor, -1);
-        int thumbBackgroundColor = ta.getResourceId(R.styleable.scanningUI_thumbBackgroundColor, -1);
-        int jumpMsgBackgroundColor = ta.getResourceId(R.styleable.scanningUI_jumpMsgBackgroundColor, -1);
-        int uploadingContainerBackgroundColor = ta.getResourceId(R.styleable.scanningUI_uploadingContainerBackgroundColor, -1);
-        int uploadingProgressBarProcessColor = ta.getResourceId(R.styleable.scanningUI_uploadingProgressBarProcessColor, -1);
+        blurScoreProgressbarProcessColor = ta.getResourceId(R.styleable.scanningUI_blurScoreProgressBarProcessColor, -1);
+        thumbBackgroundColor = ta.getResourceId(R.styleable.scanningUI_thumbBackgroundColor, -1);
+        jumpMsgBackgroundColor = ta.getResourceId(R.styleable.scanningUI_jumpMsgBackgroundColor, -1);
+        uploadingContainerBackgroundColor = ta.getResourceId(R.styleable.scanningUI_uploadingContainerBackgroundColor, -1);
+        uploadingProgressBarProcessColor = ta.getResourceId(R.styleable.scanningUI_uploadingProgressBarProcessColor, -1);
+        progressBarProcessDrawable = ta.getResourceId(R.styleable.scanningUI_android_progressDrawable, -1);
 
         Log.e(TAG, "blurScoreProgressbarProcessColor = " + blurScoreProgressbarProcessColor);
         Log.e(TAG, "thumbBackgroundColor = " + thumbBackgroundColor);
         Log.e(TAG, "jumpMsgBackgroundColor = " + jumpMsgBackgroundColor);
         Log.e(TAG, "uploadingContainerBackgroundColor = " + uploadingContainerBackgroundColor);
         Log.e(TAG, "uploadingProgressBarProcessColor = " + uploadingProgressBarProcessColor);
+        Log.e(TAG, "progressBarProcessDrawable = " + progressBarProcessDrawable);
 
         ta.recycle();
     }
@@ -133,6 +143,9 @@ public class ScanningUI extends RelativeLayout {
      * reset uploading progress bar
      */
     private void uploadingProgressBarInit() {
+        if (progressBarProcessDrawable != -1) {
+            uploadingProgressBar.setProgressDrawable(context.getResources().getDrawable(progressBarProcessDrawable));
+        }
         uploadingProgressBar.setVisibility(VISIBLE);
         uploadingProgressBar.setProgress(0);
     }
@@ -252,7 +265,11 @@ public class ScanningUI extends RelativeLayout {
         layoutParams.setMargins(0, dp2Px(context, px2Dp(context, cornerPositions.leftTop.y) - 70), 0, 0);
         scanningBlurScoreProgressBarContainer.setLayoutParams(layoutParams);
 
+
         scanningBlurValueBar = (ProgressBar) findViewById(R.id.scanning_seekbar);
+        if (progressBarProcessDrawable != -1) {
+            scanningBlurValueBar.setProgressDrawable(context.getResources().getDrawable(progressBarProcessDrawable));
+        }
         scanningBlurValueBar.setProgress(0);
         scanningBlurValueBar.setInterpolator(new BounceInterpolator());
     }

@@ -6,5 +6,6 @@
         <attr name="jumpMsgBackgroundColor" format="color" />
         <attr name="uploadingContainerBackgroundColor" format="color" />
         <attr name="uploadingProgressBarProcessColor" format="color" />
+        <attr name="android:progressDrawable" />
     </declare-styleable>
 </resources>
