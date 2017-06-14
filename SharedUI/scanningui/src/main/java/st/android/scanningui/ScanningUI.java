@@ -1,11 +1,9 @@
 package st.android.scanningui;
 
 import android.content.Context;
-import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Point;
-import android.graphics.PorterDuff;
 import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
@@ -86,10 +84,10 @@ public class ScanningUI extends RelativeLayout {
     int jumpMsgBackground;
     int thumbSrc;
 
-    ImageView conerLeftTop;
-    ImageView conerLeftBottom;
-    ImageView conerRightTop;
-    ImageView conerRightBottom;
+    ImageView cornerLeftTop;
+    ImageView cornerLeftBottom;
+    ImageView cornerRightTop;
+    ImageView cornerRightBottom;
 
     public ScanningUI(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -147,18 +145,17 @@ public class ScanningUI extends RelativeLayout {
                 jumpMsg.setBackgroundResource(jumpMsgBackground);
             }
 
-            conerLeftTop = (ImageView) findViewById(R.id.corner_left_top);
-            conerLeftBottom = (ImageView) findViewById(R.id.corner_left_bottom);
-            conerRightTop = (ImageView) findViewById(R.id.corner_right_top);
-            conerRightBottom = (ImageView) findViewById(R.id.corner_right_bottom);
+            cornerLeftTop = (ImageView) findViewById(R.id.corner_left_top);
+            cornerLeftBottom = (ImageView) findViewById(R.id.corner_left_bottom);
+            cornerRightTop = (ImageView) findViewById(R.id.corner_right_top);
+            cornerRightBottom = (ImageView) findViewById(R.id.corner_right_bottom);
 
             if (mainColor != -1) {
 
-                setDrawableTint(conerLeftBottom);
-                setDrawableTint(conerLeftTop);
-                setDrawableTint(conerRightTop);
-                setDrawableTint(conerRightBottom);
-                jumpMsg.setBackgroundColor(mainColor);
+                setDrawableTint(cornerLeftBottom);
+                setDrawableTint(cornerLeftTop);
+                setDrawableTint(cornerRightTop);
+                setDrawableTint(cornerRightBottom);
 
             }
         } catch (Exception e) {
