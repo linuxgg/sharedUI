@@ -83,6 +83,7 @@ public class ScanningUI extends RelativeLayout {
     int uploadingContainerBackgroundColor;
     int uploadingProgressBarProcessColor;
     int progressBarProcessDrawable;
+    int mainColor;
 
     public ScanningUI(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -118,6 +119,7 @@ public class ScanningUI extends RelativeLayout {
         uploadingContainerBackgroundColor = ta.getResourceId(R.styleable.scanningUI_uploadingContainerBackgroundColor, -1);
         uploadingProgressBarProcessColor = ta.getResourceId(R.styleable.scanningUI_uploadingProgressBarProcessColor, -1);
         progressBarProcessDrawable = ta.getResourceId(R.styleable.scanningUI_android_progressDrawable, -1);
+        mainColor = ta.getResourceId(R.styleable.scanningUI_mainColor, -1);
 
         Log.e(TAG, "blurScoreProgressbarProcessColor = " + blurScoreProgressbarProcessColor);
         Log.e(TAG, "thumbBackgroundColor = " + thumbBackgroundColor);
@@ -125,6 +127,7 @@ public class ScanningUI extends RelativeLayout {
         Log.e(TAG, "uploadingContainerBackgroundColor = " + uploadingContainerBackgroundColor);
         Log.e(TAG, "uploadingProgressBarProcessColor = " + uploadingProgressBarProcessColor);
         Log.e(TAG, "progressBarProcessDrawable = " + progressBarProcessDrawable);
+        Log.e(TAG, "mainColor = " + mainColor);
 
         ta.recycle();
     }
@@ -139,6 +142,14 @@ public class ScanningUI extends RelativeLayout {
         scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
         scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
         jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
+        if (mainColor != -1) {
+            scanningBlurScoreProgressBarContainer.setBackgroundColor(mainColor);
+            scanningThumb.setBackgroundResource(mainColor);
+            findViewById(R.id.corner_left_top).setBackgroundColor(mainColor);
+            findViewById(R.id.corner_left_bottom).setBackgroundColor(mainColor);
+            findViewById(R.id.corner_right_top).setBackgroundColor(mainColor);
+            findViewById(R.id.corner_right_bottom).setBackgroundColor(mainColor);
+        }
     }
 
     /**
