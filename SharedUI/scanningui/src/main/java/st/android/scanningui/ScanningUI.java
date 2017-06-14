@@ -6,9 +6,11 @@ import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Point;
 import android.graphics.PorterDuff;
+import android.graphics.drawable.Drawable;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
+import android.support.v4.graphics.drawable.DrawableCompat;
 import android.text.TextUtils;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -145,6 +147,9 @@ public class ScanningUI extends RelativeLayout {
         if (mainColor != -1) {
             scanningBlurScoreProgressBarContainer.setBackgroundColor(mainColor);
             scanningThumb.setBackgroundResource(mainColor);
+            Drawable drawable = DrawableCompat.wrap(scanningThumb.getDrawable());
+            DrawableCompat.setTint(drawable, mainColor);
+            scanningThumb.setImageDrawable(drawable);
             findViewById(R.id.corner_left_top).setBackgroundColor(mainColor);
             findViewById(R.id.corner_left_bottom).setBackgroundColor(mainColor);
             findViewById(R.id.corner_right_top).setBackgroundColor(mainColor);
