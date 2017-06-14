@@ -72,8 +72,9 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
+            android:backgroundTint="@color/white_color"
             android:max="100"
-            android:progressDrawable="@drawable/scanning_progress_bar" />
+            android:progressTint="@color/c0095f2" />
 
         <ImageView
             android:id="@+id/scanning_progressbar_thumb"
@@ -98,7 +99,7 @@
         android:visibility="gone" />
 
     <RelativeLayout
-        android:id="@+id/scaning_result_img_and_loading"
+        android:id="@+id/scanning_result_img_and_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content">
 
@@ -136,7 +137,9 @@
                 android:layout_marginEnd="15dp"
                 android:layout_marginStart="15dp"
                 android:max="100"
-                android:progressDrawable="@drawable/scanning_progress_bar" />
+                android:backgroundTint="@color/white_color"
+                android:progressTint="@color/c0095f2"
+             />
 
         </LinearLayout>
 
