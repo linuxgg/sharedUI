@@ -73,7 +73,7 @@
             android:layout_height="15dp"
             android:layout_centerVertical="true"
             android:max="100"
-            android:progressDrawable="@drawable/scanning_progress_bar" />
+            />
 
         />
 

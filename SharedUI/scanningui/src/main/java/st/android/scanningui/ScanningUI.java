@@ -1,9 +1,11 @@
 package st.android.scanningui;
 
 import android.content.Context;
+import android.content.res.ColorStateList;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Point;
+import android.graphics.PorterDuff;
 import android.os.Handler;
 import android.os.Message;
 import android.support.annotation.NonNull;
@@ -146,6 +148,8 @@ public class ScanningUI extends RelativeLayout {
         if (progressBarProcessDrawable != -1) {
             uploadingProgressBar.setProgressDrawable(context.getResources().getDrawable(progressBarProcessDrawable));
         }
+        Log.e(TAG, "uploadingProgressBar  ProcessDrawable " + uploadingProgressBar.getProgressDrawable());
+
         uploadingProgressBar.setVisibility(VISIBLE);
         uploadingProgressBar.setProgress(0);
     }
