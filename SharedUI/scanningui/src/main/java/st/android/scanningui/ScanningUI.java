@@ -166,6 +166,7 @@ public class ScanningUI extends RelativeLayout {
                 setDrawableTint(conerLeftTop);
                 setDrawableTint(conerRightTop);
                 setDrawableTint(conerRightBottom);
+                jumpMsg.setBackgroundColor(mainColor);
 
                 scanningResultUploadingContainer.setBackgroundColor(context.getResources().getColor(mainColor));
             }
