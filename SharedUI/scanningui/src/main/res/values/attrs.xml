@@ -3,7 +3,7 @@
     <declare-styleable name="scanningUI">
         <attr name="mainColor" format="color" />
         <attr name="android:progressDrawable" />
-        <attr name="jumpMsgBackground" format="reference" />
+        <attr name="msgBackground" format="reference" />
         <attr name="thumbSrc" format="reference" />
     </declare-styleable>
 </resources>

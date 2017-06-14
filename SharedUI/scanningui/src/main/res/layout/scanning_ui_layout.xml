@@ -74,8 +74,6 @@
             android:layout_centerVertical="true"
             android:max="100" />
 
-        />
-
         <ImageView
             android:id="@+id/scanning_progressbar_thumb"
             android:layout_width="40dp"
@@ -92,7 +90,6 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="300dp"
-        android:background="@drawable/circle_background"
         android:padding="10dp"
         android:textColor="@color/white_color"
         android:textSize="15sp"
@@ -114,7 +111,6 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:background="@drawable/circle_background"
             android:orientation="vertical"
             android:padding="5dp">
 

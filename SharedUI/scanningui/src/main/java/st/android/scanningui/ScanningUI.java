@@ -81,7 +81,7 @@ public class ScanningUI extends RelativeLayout {
 
     int progressBarProcessDrawable;
     int mainColor;
-    int jumpMsgBackground;
+    int msgBackground;
     int thumbSrc;
 
     ImageView cornerLeftTop;
@@ -119,7 +119,7 @@ public class ScanningUI extends RelativeLayout {
 
         progressBarProcessDrawable = ta.getResourceId(R.styleable.scanningUI_android_progressDrawable, -1);
         mainColor = ta.getResourceId(R.styleable.scanningUI_mainColor, -1);
-        jumpMsgBackground = ta.getResourceId(R.styleable.scanningUI_jumpMsgBackground, -1);
+        msgBackground = ta.getResourceId(R.styleable.scanningUI_msgBackground, -1);
         thumbSrc = ta.getResourceId(R.styleable.scanningUI_thumbSrc, -1);
 
 
@@ -134,6 +134,9 @@ public class ScanningUI extends RelativeLayout {
             uploadingProgressBar = (ProgressBar) findViewById(R.id.scanning_result_uploading_bar);
             scanningBlurScoreProgressBarContainer = (RelativeLayout) findViewById(R.id.scanning_blur_score_progress_container);
             scanningResultUploadingContainer = (LinearLayout) findViewById(R.id.scanning_result_uploading_container);
+            if (msgBackground != -1) {
+                scanningResultUploadingContainer.setBackgroundResource(msgBackground);
+            }
             resultImgAndLoadingLayout = (RelativeLayout) findViewById(R.id.scanning_result_img_and_loading);
             scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
             scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
@@ -141,8 +144,8 @@ public class ScanningUI extends RelativeLayout {
                 scanningThumb.setBackgroundResource(thumbSrc);
             }
             jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
-            if (jumpMsgBackground != -1) {
-                jumpMsg.setBackgroundResource(jumpMsgBackground);
+            if (msgBackground != -1) {
+                jumpMsg.setBackgroundResource(msgBackground);
             }
 
             cornerLeftTop = (ImageView) findViewById(R.id.corner_left_top);
