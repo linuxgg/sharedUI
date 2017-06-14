@@ -26,6 +26,7 @@ import android.view.animation.BounceInterpolator;
 import android.view.animation.ScaleAnimation;
 import android.view.animation.TranslateAnimation;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -77,6 +78,7 @@ public class ScanningUI extends RelativeLayout {
      * ProgressBar used to show the blur score
      */
     private RelativeLayout scanningBlurScoreProgressBarContainer;
+    private LinearLayout scanningResultUploadingContainer;
 
 
     int blurScoreProgressbarProcessColor;
@@ -86,6 +88,11 @@ public class ScanningUI extends RelativeLayout {
     int uploadingProgressBarProcessColor;
     int progressBarProcessDrawable;
     int mainColor;
+
+    ImageView conerLeftTop;
+    ImageView conerLeftBottom;
+    ImageView conerRightTop;
+    ImageView conerRightBottom;
 
     public ScanningUI(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -141,28 +148,40 @@ public class ScanningUI extends RelativeLayout {
         try {
             uploadingProgressBar = (ProgressBar) findViewById(R.id.scanning_result_uploading_bar);
             scanningBlurScoreProgressBarContainer = (RelativeLayout) findViewById(R.id.scanning_blur_score_progress_container);
+            scanningResultUploadingContainer = (LinearLayout) findViewById(R.id.scanning_result_uploading_container);
             resultImgAndLoadingLayout = (RelativeLayout) findViewById(R.id.scanning_result_img_and_loading);
             scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
             scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
             jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
+
+            conerLeftTop = (ImageView) findViewById(R.id.corner_left_top);
+            conerLeftBottom = (ImageView) findViewById(R.id.corner_left_bottom);
+            conerRightTop = (ImageView) findViewById(R.id.corner_right_top);
+            conerRightBottom = (ImageView) findViewById(R.id.corner_right_bottom);
+
             if (mainColor != -1) {
-                scanningBlurScoreProgressBarContainer.setBackgroundColor(context.getResources().getColor(mainColor));
 
-                Drawable drawable = DrawableCompat.wrap(scanningThumb.getDrawable());
-                if (drawable != null) {
-                    DrawableCompat.setTint(drawable, context.getResources().getColor(mainColor));
-                    scanningThumb.setImageDrawable(drawable);
-                } else {
-                    Log.e(TAG, "scanningThumb.getDrawable() is null");
-                }
+                setDrawableTint(scanningThumb);
+                setDrawableTint(conerLeftBottom);
+                setDrawableTint(conerLeftTop);
+                setDrawableTint(conerRightTop);
+                setDrawableTint(conerRightBottom);
 
-                findViewById(R.id.corner_left_top).setBackgroundColor(context.getResources().getColor(mainColor));
-                findViewById(R.id.corner_left_bottom).setBackgroundColor(context.getResources().getColor(mainColor));
-                findViewById(R.id.corner_right_top).setBackgroundColor(context.getResources().getColor(mainColor));
-                findViewById(R.id.corner_right_bottom).setBackgroundColor(context.getResources().getColor(mainColor));
+                scanningResultUploadingContainer.setBackgroundColor(context.getResources().getColor(mainColor));
             }
         } catch (Exception e) {
             e.printStackTrace();
+        }
+
+    }
+
+    private void setDrawableTint(ImageView view) {
+        Drawable drawable = DrawableCompat.wrap(view.getDrawable());
+        if (drawable != null) {
+            DrawableCompat.setTint(drawable, context.getResources().getColor(mainColor));
+            view.setImageDrawable(drawable);
+        } else {
+            Log.e(TAG, "scanningThumb.getDrawable() is null");
         }
 
     }

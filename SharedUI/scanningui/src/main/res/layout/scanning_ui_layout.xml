@@ -72,8 +72,7 @@
             android:layout_width="match_parent"
             android:layout_height="15dp"
             android:layout_centerVertical="true"
-            android:max="100"
-            />
+            android:max="100" />
 
         />
 
@@ -111,6 +110,7 @@
 
 
         <LinearLayout
+            android:id="@+id/scanning_result_uploading_container"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
