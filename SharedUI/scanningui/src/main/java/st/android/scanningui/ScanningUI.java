@@ -138,23 +138,28 @@ public class ScanningUI extends RelativeLayout {
      * init values of element
      */
     private void initElements() {
-        uploadingProgressBar = (ProgressBar) findViewById(R.id.scanning_result_uploading_bar);
-        scanningBlurScoreProgressBarContainer = (RelativeLayout) findViewById(R.id.scanning_blur_score_progress_container);
-        resultImgAndLoadingLayout = (RelativeLayout) findViewById(R.id.scanning_result_img_and_loading);
-        scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
-        scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
-        jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
-        if (mainColor != -1) {
-            scanningBlurScoreProgressBarContainer.setBackgroundColor(mainColor);
-            scanningThumb.setBackgroundResource(mainColor);
-            Drawable drawable = DrawableCompat.wrap(scanningThumb.getDrawable());
-            DrawableCompat.setTint(drawable, mainColor);
-            scanningThumb.setImageDrawable(drawable);
-            findViewById(R.id.corner_left_top).setBackgroundColor(mainColor);
-            findViewById(R.id.corner_left_bottom).setBackgroundColor(mainColor);
-            findViewById(R.id.corner_right_top).setBackgroundColor(mainColor);
-            findViewById(R.id.corner_right_bottom).setBackgroundColor(mainColor);
+        try {
+            uploadingProgressBar = (ProgressBar) findViewById(R.id.scanning_result_uploading_bar);
+            scanningBlurScoreProgressBarContainer = (RelativeLayout) findViewById(R.id.scanning_blur_score_progress_container);
+            resultImgAndLoadingLayout = (RelativeLayout) findViewById(R.id.scanning_result_img_and_loading);
+            scanningResultImg = (ImageView) resultImgAndLoadingLayout.findViewById(R.id.scanning_result_img);
+            scanningThumb = (ImageView) findViewById(R.id.scanning_progressbar_thumb);
+            jumpMsg = (TextView) findViewById(R.id.scanning_status_msg);
+            if (mainColor != -1) {
+                scanningBlurScoreProgressBarContainer.setBackgroundColor(mainColor);
+
+                Drawable drawable = DrawableCompat.wrap(scanningThumb.getDrawable());
+                DrawableCompat.setTint(drawable, mainColor);
+                scanningThumb.setImageDrawable(drawable);
+                findViewById(R.id.corner_left_top).setBackgroundColor(mainColor);
+                findViewById(R.id.corner_left_bottom).setBackgroundColor(mainColor);
+                findViewById(R.id.corner_right_top).setBackgroundColor(mainColor);
+                findViewById(R.id.corner_right_bottom).setBackgroundColor(mainColor);
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+
     }
 
     /**
