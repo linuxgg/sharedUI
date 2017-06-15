@@ -39,7 +39,7 @@ public class ScanningUI extends RelativeLayout {
      */
     private final static long MAX_DELAY_TIME = 1000;
     private final static int MSG_POP_DELAY = 1000;
-    private static int CODE_MIN_PERCENT = 70;
+    private int codeMinPercent = 70;
     private static final String TAG = ScanningUI.class.getSimpleName();
     private Context context;
     /**
@@ -103,14 +103,11 @@ public class ScanningUI extends RelativeLayout {
         }
 
         getAttrSettings(context, attrs);
-
         initElements();
-        grayLayoutInit();
-        cornersPositionInit();
-        scanningBlurScoreValueBarInit();
+
+        initChildrenWithLayout();
+
         scanningThumbInit();
-        jumpMsgInit();
-        resultImgInit();
         uploadingProgressBarInit();
     }
 
@@ -185,8 +182,6 @@ public class ScanningUI extends RelativeLayout {
         if (progressBarProcessDrawable != -1) {
             uploadingProgressBar.setProgressDrawable(context.getResources().getDrawable(progressBarProcessDrawable));
         }
-        Log.e(TAG, "uploadingProgressBar  ProcessDrawable " + uploadingProgressBar.getProgressDrawable());
-
         uploadingProgressBar.setVisibility(VISIBLE);
         uploadingProgressBar.setProgress(0);
     }
@@ -303,7 +298,7 @@ public class ScanningUI extends RelativeLayout {
      */
     private void scanningBlurScoreValueBarInit() {
         LayoutParams layoutParams = (LayoutParams) scanningBlurScoreProgressBarContainer.getLayoutParams();
-        layoutParams.setMargins(0, dp2Px(context, px2Dp(context, cornerPositions.leftTop.y) - CODE_MIN_PERCENT), 0, 0);
+        layoutParams.setMargins(0, dp2Px(context, px2Dp(context, cornerPositions.leftTop.y) - codeMinPercent), 0, 0);
         scanningBlurScoreProgressBarContainer.setLayoutParams(layoutParams);
         scanningBlurValueBar = (ProgressBar) findViewById(R.id.scanning_seekbar);
         if (progressBarProcessDrawable != -1) {
@@ -638,12 +633,24 @@ public class ScanningUI extends RelativeLayout {
         }
     }
 
-    public static int getCodeMinPercent() {
-        return CODE_MIN_PERCENT;
+    public int getCodeMinPercent() {
+        return this.codeMinPercent;
     }
 
-    public static void setCodeMinPercent(int codeMinPercent) {
-        CODE_MIN_PERCENT = codeMinPercent;
+    public void setCodeMinPercent(int codeMinPercent) {
+        this.codeMinPercent = codeMinPercent;
+        initChildrenWithLayout();
+    }
+
+    /**
+     * init with given codeMinPercent
+     */
+    private void initChildrenWithLayout() {
+        grayLayoutInit();
+        cornersPositionInit();
+        scanningBlurScoreValueBarInit();
+        jumpMsgInit();
+        resultImgInit();
     }
 
     /**
