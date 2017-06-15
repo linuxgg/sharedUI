@@ -29,7 +29,9 @@ import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
-
+/**
+ * scanning ui
+ */
 public class ScanningUI extends RelativeLayout {
 
     /**
@@ -37,6 +39,7 @@ public class ScanningUI extends RelativeLayout {
      */
     private final static long MAX_DELAY_TIME = 1000;
     private final static int MSG_POP_DELAY = 1000;
+    private static int CODE_MIN_PERCENT = 70;
     private static final String TAG = ScanningUI.class.getSimpleName();
     private Context context;
     /**
@@ -79,15 +82,12 @@ public class ScanningUI extends RelativeLayout {
     private LinearLayout scanningResultUploadingContainer;
 
 
-    int progressBarProcessDrawable;
-    int mainColor;
-    int msgBackground;
-    int thumbSrc;
+    private int progressBarProcessDrawable;
+    private int mainColor;
+    private int msgBackground;
+    private int thumbSrc;
 
-    ImageView cornerLeftTop;
-    ImageView cornerLeftBottom;
-    ImageView cornerRightTop;
-    ImageView cornerRightBottom;
+    private ImageView cornerLeftTop, cornerLeftBottom, cornerRightTop, cornerRightBottom;
 
     public ScanningUI(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -152,14 +152,11 @@ public class ScanningUI extends RelativeLayout {
             cornerLeftBottom = (ImageView) findViewById(R.id.corner_left_bottom);
             cornerRightTop = (ImageView) findViewById(R.id.corner_right_top);
             cornerRightBottom = (ImageView) findViewById(R.id.corner_right_bottom);
-
             if (mainColor != -1) {
-
                 setDrawableTint(cornerLeftBottom);
                 setDrawableTint(cornerLeftTop);
                 setDrawableTint(cornerRightTop);
                 setDrawableTint(cornerRightBottom);
-
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -167,6 +164,9 @@ public class ScanningUI extends RelativeLayout {
 
     }
 
+    /**
+     * set the customised color of the img
+     */
     private void setDrawableTint(ImageView view) {
         Drawable drawable = DrawableCompat.wrap(view.getDrawable());
         if (drawable != null) {
@@ -303,10 +303,8 @@ public class ScanningUI extends RelativeLayout {
      */
     private void scanningBlurScoreValueBarInit() {
         LayoutParams layoutParams = (LayoutParams) scanningBlurScoreProgressBarContainer.getLayoutParams();
-        layoutParams.setMargins(0, dp2Px(context, px2Dp(context, cornerPositions.leftTop.y) - 70), 0, 0);
+        layoutParams.setMargins(0, dp2Px(context, px2Dp(context, cornerPositions.leftTop.y) - CODE_MIN_PERCENT), 0, 0);
         scanningBlurScoreProgressBarContainer.setLayoutParams(layoutParams);
-
-
         scanningBlurValueBar = (ProgressBar) findViewById(R.id.scanning_seekbar);
         if (progressBarProcessDrawable != -1) {
             scanningBlurValueBar.setProgressDrawable(context.getResources().getDrawable(progressBarProcessDrawable));
@@ -363,7 +361,9 @@ public class ScanningUI extends RelativeLayout {
         return metrics;
     }
 
-
+    /**
+     * init the gray border layout
+     */
     private void grayLayoutInit() {
         int displayW = getMetrics(context).widthPixels;
         int displayH = getMetrics(context).heightPixels;
@@ -423,10 +423,10 @@ public class ScanningUI extends RelativeLayout {
      * init corners position
      */
     private void cornersPositionInit() {
-        setMarginLayout(findViewById(R.id.corner_left_top), cornerPositions.getLeftTop().x, cornerPositions.getLeftTop().y);
-        setMarginLayout(findViewById(R.id.corner_left_bottom), cornerPositions.getLeftBottom().x, cornerPositions.getLeftBottom().y);
-        setMarginLayout(findViewById(R.id.corner_right_top), cornerPositions.getRightTop().x, cornerPositions.getRightTop().y);
-        setMarginLayout(findViewById(R.id.corner_right_bottom), cornerPositions.getRightBottom().x, cornerPositions.getRightBottom().y);
+        setMarginLayout(cornerLeftTop, cornerPositions.getLeftTop().x, cornerPositions.getLeftTop().y);
+        setMarginLayout(cornerLeftBottom, cornerPositions.getLeftBottom().x, cornerPositions.getLeftBottom().y);
+        setMarginLayout(cornerRightTop, cornerPositions.getRightTop().x, cornerPositions.getRightTop().y);
+        setMarginLayout(cornerRightBottom, cornerPositions.getRightBottom().x, cornerPositions.getRightBottom().y);
         cornersCurrentDelayTime = System.currentTimeMillis();
     }
 
@@ -435,10 +435,10 @@ public class ScanningUI extends RelativeLayout {
      */
     public void cornersMovedToFocus() {
         int shift = context.getResources().getDisplayMetrics().densityDpi >= 640 ? 400 : 300;
-        setMarginLayout(findViewById(R.id.corner_left_top), cornerPositions.getLeftTop().x + shift, cornerPositions.getLeftTop().y + shift);
-        setMarginLayout(findViewById(R.id.corner_left_bottom), cornerPositions.getLeftBottom().x + shift, cornerPositions.getLeftBottom().y - shift);
-        setMarginLayout(findViewById(R.id.corner_right_top), cornerPositions.getRightTop().x - shift, cornerPositions.getRightTop().y + shift);
-        setMarginLayout(findViewById(R.id.corner_right_bottom), cornerPositions.getRightBottom().x - shift, cornerPositions.getRightBottom().y - shift);
+        setMarginLayout(cornerLeftTop, cornerPositions.getLeftTop().x + shift, cornerPositions.getLeftTop().y + shift);
+        setMarginLayout(cornerLeftBottom, cornerPositions.getLeftBottom().x + shift, cornerPositions.getLeftBottom().y - shift);
+        setMarginLayout(cornerRightTop, cornerPositions.getRightTop().x - shift, cornerPositions.getRightTop().y + shift);
+        setMarginLayout(cornerRightBottom, cornerPositions.getRightBottom().x - shift, cornerPositions.getRightBottom().y - shift);
     }
 
     /**
@@ -466,8 +466,6 @@ public class ScanningUI extends RelativeLayout {
 
     /**
      * set the process of the uploading progress bar
-     *
-     * @param processRate
      */
     public void uploadingProgressBarSet(int processRate) {
         uploadingProgressBar.setProgress(processRate);
@@ -496,11 +494,17 @@ public class ScanningUI extends RelativeLayout {
         return uploadingProgressBar.getVisibility() == VISIBLE;
     }
 
+    /**
+     * convert dp to px
+     */
     public static int dp2Px(Context context, float dp) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (dp * scale + 0.5f);
     }
 
+    /**
+     * convert px to dp
+     */
     public static int px2Dp(Context context, float px) {
         final float scale = context.getResources().getDisplayMetrics().density;
         return (int) (px / scale + 0.5f);
@@ -515,6 +519,9 @@ public class ScanningUI extends RelativeLayout {
         }
     }
 
+    /**
+     * animation of jump msg and progress bar
+     */
     public static class AnimationHandler extends Handler {
 
         private static final int DECREASE_SCAN_BLURS_CORE_BAR = 0;
@@ -567,14 +574,28 @@ public class ScanningUI extends RelativeLayout {
 
     /**
      * for easy to know the corner position
+     * <p>
+     * position of 4 corners
      */
-    private class CornerPositions {
+    public class CornerPositions {
+        /**
+         * left corner top
+         */
         private Point leftTop;
+        /**
+         * left corner bottom
+         */
         private Point leftBottom;
+        /**
+         * right corner top
+         */
         private Point rightTop;
+        /**
+         * right corner bottom
+         */
         private Point rightBottom;
 
-        Point getLeftTop() {
+        public Point getLeftTop() {
             return leftTop;
         }
 
@@ -582,7 +603,7 @@ public class ScanningUI extends RelativeLayout {
             this.leftTop = leftTop;
         }
 
-        Point getLeftBottom() {
+        public Point getLeftBottom() {
             return leftBottom;
         }
 
@@ -590,7 +611,7 @@ public class ScanningUI extends RelativeLayout {
             this.leftBottom = leftBottom;
         }
 
-        Point getRightTop() {
+        public Point getRightTop() {
             return rightTop;
         }
 
@@ -598,7 +619,7 @@ public class ScanningUI extends RelativeLayout {
             this.rightTop = rightTop;
         }
 
-        Point getRightBottom() {
+        public Point getRightBottom() {
             return rightBottom;
         }
 
@@ -617,4 +638,24 @@ public class ScanningUI extends RelativeLayout {
         }
     }
 
+    public static int getCodeMinPercent() {
+        return CODE_MIN_PERCENT;
+    }
+
+    public static void setCodeMinPercent(int codeMinPercent) {
+        CODE_MIN_PERCENT = codeMinPercent;
+    }
+
+    /**
+     * {@link CornerPositions}
+     *
+     * @return cornerPositions
+     */
+    public CornerPositions getCornerPositions() {
+        return cornerPositions;
+    }
+
+    public void setCornerPositions(CornerPositions cornerPositions) {
+        this.cornerPositions = cornerPositions;
+    }
 }
