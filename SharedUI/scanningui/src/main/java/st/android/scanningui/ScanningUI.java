@@ -362,8 +362,7 @@ public class ScanningUI extends RelativeLayout {
     private void grayLayoutInit() {
         int displayW = getMetrics(context).widthPixels;
         int displayH = getMetrics(context).heightPixels;
-        int minProportion = 70;
-        float placeholderProportion = Math.min(minProportion / 100.0f + 0.1f, 1);// set a 10% margin
+        float placeholderProportion = Math.min(codeMinPercent / 100.0f + 0.1f, 1);// set a 10% margin
         float sideMarginProportion = (1 - placeholderProportion) / 2.0f;
         int padw = (int) (displayW * sideMarginProportion);
         int squaresize = displayW - 2 * padw;
