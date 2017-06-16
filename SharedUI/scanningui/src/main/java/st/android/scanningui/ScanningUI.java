@@ -111,15 +111,18 @@ public class ScanningUI extends RelativeLayout {
         uploadingProgressBarInit();
     }
 
+    /**
+     * get attrs
+     *
+     * @param context context
+     * @param attrs   attr
+     */
     private void getAttrSettings(Context context, AttributeSet attrs) {
         TypedArray ta = context.obtainStyledAttributes(attrs, R.styleable.scanningUI);
-
         progressBarProcessDrawable = ta.getResourceId(R.styleable.scanningUI_android_progressDrawable, -1);
         mainColor = ta.getResourceId(R.styleable.scanningUI_mainColor, -1);
         msgBackground = ta.getResourceId(R.styleable.scanningUI_msgBackground, -1);
         thumbSrc = ta.getResourceId(R.styleable.scanningUI_thumbSrc, -1);
-
-
         ta.recycle();
     }
 
